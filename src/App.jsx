@@ -23,11 +23,13 @@ import { ApplicantProvider } from './components/Applicationcontext'
 import ViewApplicants from './pages/ViewApplicants'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Scrolltotop from './components/Scrolltotop'
 
 function App() {
  
   return(
     <Router>
+      <Scrolltotop/>
        <Appcontent/>
     </Router>
   )

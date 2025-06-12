@@ -19,7 +19,7 @@ function Contact() {
     }
   return (
     <div className='mx-auto px-8 py-10 max-w-4xl'>
-        <h1 className='text-center text-gray-700 text-3xl font-semibold'>Contact Us</h1>
+        <h1 className='text-center text-indigo-700 text-4xl font-semibold'>Contact Us</h1>
         <div>
             <p className="text-md text-gray-700 italic mb-6 text-center">
              Have questions or feedback? Feel free to reach out to us!

@@ -1,22 +1,20 @@
-import React, { isValidElement } from 'react'
+import React, { isValidElement, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import herobanner from '../assets/images/herobanner.jpg'
 import techinnovation from '../assets/images/company/companylogo1.Avif'
 import Global from '../assets/images/company/companylogo2.jpg'
 import Creativemind from '../assets/images/company/companylogo3.jpg'
+import Jobcontext from '../components/Jobcontext'
 
 function Homepage() {
+
+  const {jobs}=useContext(Jobcontext)
     const featuredcompaies=[
     { id: 1, name: 'Tech Innovations Inc.', logo: techinnovation, description: 'Leading the future of AI.' },
     { id: 2, name: 'Global Solutions Ltd.', logo: Global, description: 'Solving complex problems globally.' },
     { id: 3, name: 'Creative Minds Studio', logo: Creativemind, description: 'Innovating design and digital art.' },
   ];
-    const featuredJobs = [
-    { id: 101, title: 'Senior React Developer', company: 'Tech Innovations Inc.', location: 'Remote', type: 'Full-time' },
-    { id: 102, title: 'Product Manager', company: 'Global Solutions Ltd.', location: 'New York, NY', type: 'Full-time' },
-    { id: 103, title: 'UX/UI Designer', company: 'Creative Minds Studio', location: 'London, UK', type: 'Contract' },
-    { id: 104, title: 'Python Developer', company: 'TCS', location: 'Kochi, Kerala', type: 'Full-time' },
-  ];
+    
 
    const testimonials = [
     { id: 1, name: 'Jane Doe', title: 'Software Engineer', quote: 'JobSphere helped me land my dream job within weeks! The interface is so intuitive.' },
@@ -42,11 +40,13 @@ function Homepage() {
        <section className=' py-20 px-6'>
         <h1 className='text-center font-bold text-3xl text-blue-700'>Featured Jobs</h1>
         <div className='flex justify-between my-20'>
-            {featuredJobs.map(jobs=>(
+            {jobs.slice(0,4).map(jobs=>(
+              <Link to={`/job/${jobs.id}`}>
                 <div key={jobs.id}>
                    <h1 className='text-center text-2xl'>{jobs.title}</h1> 
                     <p><strong>{jobs.company}</strong>-{jobs.location} ({jobs.type})</p>
                 </div>
+                </Link>
             ))}
         </div>
         <div className='text-center'>
