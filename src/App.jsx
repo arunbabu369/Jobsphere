@@ -41,7 +41,7 @@ function Appcontent(){
   const isLoginpage=location.pathname==='/login'
   const isEmployerheader=location.pathname.startsWith('/employer')
 
-  const mainPaddingClass=(isRegisterpage || isLoginpage)?'pt-4':(isEmployerheader)?'pt-24':'pt-24'
+  const mainPaddingClass=(isRegisterpage || isLoginpage)?'pt-4':(isEmployerheader)?'pt-20 sm:pt-24':'pt-20 sm:pt-24'
 
 
 

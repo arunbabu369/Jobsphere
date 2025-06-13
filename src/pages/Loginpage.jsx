@@ -42,8 +42,8 @@ function Loginpage() {
 
   return (
     <>
-    <div className='flex justify-center items-center min-h-[calc(100vh-6rem)]'>
-      <div className='bg-white p-8 rounded-lg shadow-xl w-full max-w-md'>
+    <div className='flex justify-center items-center my-6 md:min-h-[calc(100vh-6rem)]'>
+      <div className='bg-white p-8 rounded-lg sm:shadow-xl w-full max-w-md'>
         <img src={logo} alt="" className='h-[100px] w-[250px] flex justify-center mx-auto'/>
           <h2 className="text-3xl font-bold text-black text-center mb-6">Login</h2>
           {error &&<p className='text-red-500 text-center text-sm italic mt-4'>*{error}*</p>}

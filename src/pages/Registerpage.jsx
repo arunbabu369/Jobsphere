@@ -86,7 +86,7 @@ function Registerpage() {
     </div>
     <div className='flex justify-center items-center '>
       
-      <div className='bg-white p-8 rounded-lg shadow-xl w-full max-w-md'>
+      <div className='bg-white p-8 rounded-lg sm:shadow-xl w-full max-w-md'>
         <h1 className='text-center text-3xl font-bold'>Register Here</h1>
         <form onSubmit={handleSubmit} className='space-y-4'>
             {error &&<p className='text-red-500 text-center text-sm italic mt-4'>*{error}*</p>}

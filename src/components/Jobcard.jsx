@@ -29,21 +29,21 @@ function Jobcard({job}) {
       <div className=' '>
         <div>
             {console.log("jobs")}
-             <h1 className='font-semibold text-2xl text-center'>{job.title}</h1>
-            <p className='text-gray-700 text-center'><strong >{job.company} </strong>- {job.location} ({job.type})</p>
+             <h1 className='font-semibold text-lg sm:text-2xl text-center'>{job.title}</h1>
+            <p className='text-gray-700 text-sm sm:text-base text-center'><strong className='text-sm sm:text-base'>{job.company} </strong>- {job.location} ({job.type})</p>
         </div>
-        <div className='flex justify-center gap-6 text-gray-500'>
-            <span>Salary:{job.salary} </span>
-            <span>Experience:{job.experience} </span>
-            <span>{job.remoteHybrid} </span>
+        <div className='sm:flex justify-center gap-1 sm:gap-6 text-gray-500'>
+            <span className=' hidden md:block'>Salary:{job.salary} </span>
+            <span className='text-sm'>Experience:{job.experience} </span>
+            <span className='text-sm '>{job.remoteHybrid} </span>
         </div>
         </div>
         </Link>
         
          
         
-        <div className='flex justify-center gap-8 my-4'>
-          <Link to={`/job/${job.id}`}><button className={`bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 text-sm`}>
+        <div className='flex justify-center gap-2 sm:gap-8 my-4'>
+          <Link to={`/job/${job.id}`}><button className={`bg-green-500 text-white px-2 py-1 sm:px-4 sm:py-2 rounded-md hover:bg-green-600 transition-colors duration-200 text-xs sm:text-sm`}>
             
             View Details
           </button>
