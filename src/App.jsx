@@ -27,6 +27,10 @@ import Scrolltotop from './components/Scrolltotop'
 import Profile from './pages/Profile'
 import AddQualificationForm from './components/AddQualificationForm'
 import AddEducationForm from './components/AddEducationForm'
+import Admindashboard from './pages/Admindashboard'
+import Adminheader from './pages/Adminheader'
+import Adminusers from './pages/Adminusers'
+import Adminjobs from './pages/Adminjobs'
 
 function App() {
  
@@ -43,6 +47,9 @@ function Appcontent(){
   const isRegisterpage=location.pathname==='/register'
   const isLoginpage=location.pathname==='/login'
   const isEmployerheader=location.pathname.startsWith('/employer')
+  const isAdminheader=location.pathname.startsWith('/admin')
+
+
 
   const mainPaddingClass=(isRegisterpage || isLoginpage)?'pt-4':(isEmployerheader)?'pt-20 sm:pt-24':'pt-20 sm:pt-24'
 
@@ -55,6 +62,7 @@ function Appcontent(){
     <Authprovider>
      {!isRegisterpage&&!isLoginpage && !isEmployerheader&&<Header/>}
      {isEmployerheader &&<Employerheader/>}
+     {isAdminheader &&<Adminheader/>}
      <JobProvider>
       <main className={`${mainPaddingClass} flex-grow`}>
       <Routes>
@@ -66,6 +74,11 @@ function Appcontent(){
         <Route path='/login' element={<Loginpage/>}></Route>
         <Route path='/register' element={<Registerpage/>}></Route>
         <Route path='/dashboard' element={<Dashboarduser/>}></Route>
+        <Route element={<PrivateRoute allowedroles={['admin']}/>}>
+          <Route path='/admin' element={<Admindashboard/>}></Route>
+          <Route path='/admin/users' element={<Adminusers/>}></Route>
+          <Route path='/admin/jobs' element={<Adminjobs/>}></Route>
+        </Route>
         <Route element={<PrivateRoute allowedroles={['jobseeker']}/>}>
           <Route path='/dashboard' element={<Dashboarduser/>}>
             <Route index element={<DashbourdOverview/>}></Route>

@@ -22,6 +22,8 @@ function PrivateRoute({allowedroles}) {
             return <Navigate to="/employer" replace />;
         } else if (currentuser.role === 'jobseeker') {
             return <Navigate to="/" replace />;
+        }else if(currentuser.role==='admin'){
+            return<Navigate to="/admin" replace/>
         }
         // - Or to a generic unauthorized page, or even the home page
         return <Navigate to="/" replace />;

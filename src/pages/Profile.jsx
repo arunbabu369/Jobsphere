@@ -24,6 +24,8 @@ function Profile() {
                 experience:currentuser.experience,
                 education:currentuser.education
             })
+            setEducation(currentuser.education||[])
+            setExperience(currentuser.experience||[])
             setLoading(false)
         }else{
             console.log("User not logged in")

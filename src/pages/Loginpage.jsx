@@ -26,7 +26,10 @@ function Loginpage() {
       const loggedInUser=await login(email,password)
       alert("Login Successful")
       setTimeout(()=>{
-        if(loggedInUser.role==='jobseeker')
+        if(loggedInUser.role==='admin'){
+          navigate('/admin')
+        }
+        else if(loggedInUser.role==='jobseeker')
           {
             navigate('/')
           }

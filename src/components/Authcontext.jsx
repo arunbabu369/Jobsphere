@@ -33,6 +33,29 @@ export const Authprovider=({children})=>{
         setloading(false)
     },[])
 
+    useEffect(()=>{
+        const ADMIN_EMAIL='admin@gmail.com'
+        const ADMIN_PASS='admin1234'
+
+        const users=JSON.parse(localStorage.getItem('users'))
+        const adminfound=users.find(user=>user.email===ADMIN_EMAIL && user.password===ADMIN_PASS)
+        if(!adminfound){
+            console.log("Admin user not found. looking default admin user.");
+            const hashedmockPassword=hashmockPassword(ADMIN_PASS)
+            const new_admin={
+                id:'admin_'+Date.now(),
+                username:'admin12',
+                password:hashedmockPassword,
+                fullname:'Administrator',
+                role:'admin',
+                email:ADMIN_EMAIL
+            }
+            users.push(new_admin)
+            localStorage.setItem('users',JSON.stringify(users))
+        }
+        setloading(false)
+    },[])
+
     const register=useCallback((username,password,email,role='jobseeker',companyname='',fullname)=>{
         console.log("Register: Attempting to get 'users' from localStorage.");
         let users=JSON.parse(localStorage.getItem('users'))||[]
@@ -71,7 +94,7 @@ export const Authprovider=({children})=>{
             localStorage.setItem('currentuser',JSON.stringify(founduser))
             return founduser
         }else{
-            throw new Error("Invalid USername Or Password")
+            throw new Error("Invalid Username Or Password")
         }
     },[setCurrentuser])
 
