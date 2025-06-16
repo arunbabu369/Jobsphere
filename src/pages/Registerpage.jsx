@@ -13,6 +13,7 @@ function Registerpage() {
   const[success,setSuccess]=useState('')
   const[role,setRole]=useState('jobseeker')
   const[companyname,setcompanyname]=useState('')
+  const[fullname,setFullname]=useState('')
   
   const { register }=useContext(Authcontext)
   const navigate=useNavigate()
@@ -23,7 +24,7 @@ function Registerpage() {
     setError('')
     setSuccess('')
     if(role==='jobseeker'){
-      if(!username || !email || !password || !confirmpass){
+      if(!username || !email || !password || !confirmpass || !fullname){
         setError("All Fields Required")
         return
       }
@@ -33,6 +34,12 @@ function Registerpage() {
         setError("All Fields Required")
         return
     }  
+    }
+     
+    const nameRegex=/^[a-zA-Z\s'-]+$/.test(fullname)
+    if(role === 'jobseeker' && fullname && !nameRegex){
+      setError("Name should only contain Letter")
+      return
     }
 
     if(password.length<8){
@@ -66,7 +73,7 @@ function Registerpage() {
     }
 
     try{
-      await register(username,password,email,role,companyname)
+      await register(username,password,email,role,companyname,fullname)
       setSuccess("Registration Successful")
       setTimeout(() => {
         navigate('/login')
@@ -113,7 +120,7 @@ function Registerpage() {
                 )}
 
             {role === 'jobseeker' &&(
-            <div className='form-group'>
+            <div className='form-group mt-4'>
             <label className='text-xl text-blue-600' htmlFor="username">Username</label><br></br>
             <input type="text" 
             className='w-full border p-2'
@@ -122,7 +129,17 @@ function Registerpage() {
                    onChange={(e)=>setUsername(e.target.value)}
                   
             />
-            </div>)}
+            <label className='text-xl text-blue-600' htmlFor="Fullname">Full Name</label><br></br>
+            <input type="text" 
+            className='w-full border p-2'
+                   placeholder='Enter Your Full Name'
+                   value={fullname}
+                   onChange={(e)=>setFullname(e.target.value)}
+                   
+            />
+            </div>
+            
+          )}
             <label className='text-xl text-blue-600' htmlFor="email">Email</label><br></br>
             <input type="text" 
             className='w-full border p-2'

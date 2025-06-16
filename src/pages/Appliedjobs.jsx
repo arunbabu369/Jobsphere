@@ -9,7 +9,7 @@ function Appliedjobs(){
 
     const appliedjobs=currentuser?currentuser.appliedjobs:[]
     return(
-        <div className="mx-auto px-8 py-4">
+        <div className="flex-1 mx-auto px-8 py-4">
             <h1 className="text-center text-2xl sm:text-4xl font-semibold text-indigo-700 my-10">Applied Jobs</h1>
             {appliedjobs.length==0?(
             <div className='text-sm sm:text-base text-center '>

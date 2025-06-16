@@ -33,7 +33,7 @@ export const Authprovider=({children})=>{
         setloading(false)
     },[])
 
-    const register=useCallback((username,password,email,role='jobseeker',companyname='')=>{
+    const register=useCallback((username,password,email,role='jobseeker',companyname='',fullname)=>{
         console.log("Register: Attempting to get 'users' from localStorage.");
         let users=JSON.parse(localStorage.getItem('users'))||[]
         if(users.some(user=>user.email===email)){
@@ -47,7 +47,10 @@ export const Authprovider=({children})=>{
             savedjobs:[],
             appliedjobs:[],
             role:role,
-            companyname: role === 'employer' ? companyname : ''
+            companyname: role === 'employer' ? companyname : '',
+            fullname,
+            experience:[],
+            education:[]
         }
         users.push(newuser)
         localStorage.setItem('users',JSON.stringify(users))
@@ -183,6 +186,28 @@ export const Authprovider=({children})=>{
 
     },[currentuser,setCurrentuser,addApplicationrecord])
 
+    const updatedProfileData=useCallback((updatedData)=>{
+        if (!currentuser) {
+            console.warn("Attempted to update profile data for a non-existent user.");
+            return;
+        }
+
+        const updatedCurrentuser={...currentuser,...updatedData}
+        setCurrentuser(updatedCurrentuser)
+        localStorage.setItem('currentuser',JSON.stringify(updatedCurrentuser))
+
+        let users = JSON.parse(localStorage.getItem('users'))|| [];
+        const userIndex = users.findIndex(user => user.id === currentuser.id);
+        if(userIndex!==-1){
+            users[userIndex]=updatedCurrentuser
+            localStorage.setItem('users',JSON.stringify(users))
+            console.log("Profile data updated in localStorage for all users.");
+        }else{
+            console.log("Not current user")
+        }
+        return updatedCurrentuser
+    },[currentuser,setCurrentuser])
+
     const authValue=useMemo(()=>({
         currentuser,
         loading,
@@ -191,7 +216,8 @@ export const Authprovider=({children})=>{
         logout,
         savejob,
         applyJob,
-        unsave
+        unsave,
+        updatedProfileData
 
     }),[currentuser,loading, register,login,logout,savejob,applyJob,unsave])
 

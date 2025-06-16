@@ -36,13 +36,16 @@ function Loginpage() {
       },1500)
     }
     catch(err){
+      setError("Invalid credentials")
       console.error(err.message||"Error Login")
     }
   }
 
   return (
     <>
+    <Link className='text-blue-700 ' to={'/'}> -Back to home</Link>
     <div className='flex justify-center items-center my-6 md:min-h-[calc(100vh-6rem)]'>
+      
       <div className='bg-white p-8 rounded-lg sm:shadow-xl w-full max-w-md'>
         <img src={logo} alt="" className='h-[100px] w-[250px] flex justify-center mx-auto'/>
           <h2 className="text-3xl font-bold text-black text-center mb-6">Login</h2>

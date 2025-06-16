@@ -24,6 +24,9 @@ import ViewApplicants from './pages/ViewApplicants'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Scrolltotop from './components/Scrolltotop'
+import Profile from './pages/Profile'
+import AddQualificationForm from './components/AddQualificationForm'
+import AddEducationForm from './components/AddEducationForm'
 
 function App() {
  
@@ -68,6 +71,9 @@ function Appcontent(){
             <Route index element={<DashbourdOverview/>}></Route>
             <Route path='save-jobs' element={<Savejobs/>}/>
             <Route path='applied-jobs' element={<Appliedjobs/>}></Route>
+            <Route path='profile' element={<Profile/>}></Route>
+            <Route path='add-qualification' element={<AddQualificationForm/>}></Route>
+            <Route path='add-education' element={<AddEducationForm/>}></Route>
           </Route>  
         </Route>  
         <Route element={<PrivateRoute allowedroles={['employer']}/>}>

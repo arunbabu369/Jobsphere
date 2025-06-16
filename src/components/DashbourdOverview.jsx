@@ -8,7 +8,7 @@ function DashbourdOverview() {
     const countSavedjobs=currentuser?.savedjobs?.length||0
     const countAppliedjobs=currentuser?.appliedjobs?.length||0
   return (
-    <div className="container mx-auto pt-8 px-4"> 
+    <div className="container h-screen mx-auto pt-8 px-4"> 
       <h1 className="text-2xl sm:text-4xl font-bold mb-8 text-gray-800">Welcome, {currentuser.username}!</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

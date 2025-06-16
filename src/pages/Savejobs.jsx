@@ -34,8 +34,8 @@ function Savejobs() {
                 <Link to={'/job'}><p className='text-blue-400 underline'>Browse jobs</p></Link>
             </div>
         ):
-        (<div className="grid grid-cols-1 md:grid-cols-2 gap-6">{savejobs.map(job=>(
-            <div key={job.id} className='bg-white rounded-lg p-2 sm:p-6 shadow-lg border border-gray-100'>
+        (<div className="grid grid-cols-1 md:grid-cols-3 gap-6">{savejobs.map(job=>(
+            <div key={job.id} className='bg-white rounded-lg p-2 sm:p-6 shadow-lg border border-gray-100 mx-auto'>
                 <Link to={`/job/${job.id}`}>
                     <h2 className='text-lg sm:text-xl font-semibold'>{job.title}</h2>
                     <p className="text-gray-600 text-sm mb-1">
