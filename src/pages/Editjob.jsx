@@ -31,7 +31,7 @@ function Editjob() {
             const jobtoEdit=jobs.find(j=>j.id===jobId)
             console.log("job:",jobtoEdit)
             if(jobtoEdit){
-                if(!currentuser || currentuser.id!==jobtoEdit.employerid){
+                if(!currentuser || currentuser.id!==jobtoEdit.employerId){
                     console.error("Unauthorized: User is not the employer of this job.");
                     navigate('/employer/Manage-Jobs')
                     return
@@ -97,7 +97,7 @@ function Editjob() {
             const updatedjob={
                 ...jobsdata,
                 id:jobId,
-                employerid:currentuser.id,
+                employerId:currentuser.id,
                 
             }
             const success=updatedJob(updatedjob)

@@ -14,16 +14,16 @@ function Jobdetails() {
   const navigate=useNavigate()
 
 useEffect(() => {
-        // console.log('Jobdetails useEffect: jobs from context:', jobs); // Debugging: Check job array content
-        // console.log('Jobdetails useEffect: ID from URL:', id);      // Debugging: Check URL ID
+        // console.log('Jobdetails useEffect: jobs from context:', jobs); 
+        // console.log('Jobdetails useEffect: ID from URL:', id);      
 
-        // Ensure jobs is an array before trying to find on it
         if (Array.isArray(jobs) && jobs.length > 0) {
             const foundJob = jobs.find((j) => String(j.id) === String(id)); // <--- Ensure string comparison
             setJob(foundJob);
+            
             // console.log('Jobdetails useEffect: Found job:', foundJob); // Debugging: Check if job is found
         } else {
-            setJob(null); // Reset job if jobs context is empty or not an array
+            setJob(null); 
         }
     }, [id, jobs]); 
   
@@ -43,13 +43,16 @@ useEffect(() => {
         jobId:job.id,
         jobtitle:job.title,
         company:job.company,
-        employerId:job.employerid,
+        employerId:job.employerId,
         applicantName:applicantName,
         applicantEmail:applicantEmail,
-        resumeLink:resumeLink
+        resumeLink:resumeLink,
+        status:'pending'
       }
       
       try {
+        console.log("hello applied");
+        
         await applyJob(applicationTOsend)
         alert(`${job.title} applied successfully`)
       } catch (error) {
@@ -118,7 +121,7 @@ useEffect(() => {
                  viewBox="0 0 24 24">
                  <path d="M10 2h4a2 2 0 012 2v2h2a2 2 0 012 2v2H4V8a2 2 0 012-2h2V4a2 2 0 012-2zm0 4h4V4h-4v2zM4 12h16v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6z"/>
               </svg>
-               <div className='ml-2 text-sm sm:text-lg'>
+               <div className='ml-2 sm:ml-6 text-sm sm:text-lg'>
                <p className='text-semibold text-md sm:text-lg'>Job-Type</p>
                <p className=''>{job.type}</p>
                </div>
@@ -126,7 +129,7 @@ useEffect(() => {
 
                <div className='flex mt-4'>
                 <svg xmlns="http://www.w3.org/2000/svg"
-                   class="h-6 w-6 sm:w-8 sm:h-8 sm:h-8 text-blue-600"
+                   class="h-6 w-6 sm:w-8 sm:h-8  text-blue-600"
                   fill="currentColor"
                   viewBox="0 0 24 24">
                   <path d="M12 1a1 1 0 011 1v1.05c2.28.25 4 1.64 4 3.45 0 1.82-1.67 3.2-4.25 3.45V14c1.75.2 3 1.15 3 2.5 0 1.41-1.37 2.5-3.25 2.5S9.5 17.91 9.5 16.5H8c0 2.14 1.95 3.84 4.5 3.96V22a1 1 0 01-2 0v-1.05c-2.28-.25-4-1.64-4-3.45 0-1.82 1.67-3.2 4.25-3.45V10c-1.75-.2-3-1.15-3-2.5 0-1.41 1.37-2.5 3.25-2.5S14.5 6.59 14.5 8h1.5c0-2.14-1.95-3.84-4.5-3.96V2a1 1 0 011-1z"/>

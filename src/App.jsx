@@ -31,6 +31,10 @@ import Admindashboard from './pages/Admindashboard'
 import Adminheader from './pages/Adminheader'
 import Adminusers from './pages/Adminusers'
 import Adminjobs from './pages/Adminjobs'
+import EmployerChatDashboard from './pages/EmployerChatDashboard'
+import EmployerAnalyticsPage from './components/EmployerAnalyticsPage'
+import AnnouncementsPage from './pages/Announcementpage'
+//import { AnnoncementProvider } from './components/Announcementcontext'
 
 function App() {
  
@@ -48,11 +52,15 @@ function Appcontent(){
   const isLoginpage=location.pathname==='/login'
   const isEmployerheader=location.pathname.startsWith('/employer')
   const isAdminheader=location.pathname.startsWith('/admin')
+  const isjobseekerdash=location.pathname.startsWith('/dashboard')
 
 
+   const mainPaddingClass = (isRegisterpage || isLoginpage) ? 'pt-0' :
+                           (isEmployerheader) ? 'pt-[72px] sm:pt-[96px]' : // Adjusted based on common header sizes
+                           'pt-[80px] sm:pt-[96px]';
 
-  const mainPaddingClass=(isRegisterpage || isLoginpage)?'pt-4':(isEmployerheader)?'pt-20 sm:pt-24':'pt-20 sm:pt-24'
-
+   
+  const footeredit= (isjobseekerdash)?'mt-1 bg-white':'mt-6'
 
 
   return (
@@ -60,10 +68,13 @@ function Appcontent(){
     <div className="flex flex-col min-h-screen"> 
     <ApplicantProvider>
     <Authprovider>
+      <JobProvider>
+     
+    
      {!isRegisterpage&&!isLoginpage && !isEmployerheader&&<Header/>}
      {isEmployerheader &&<Employerheader/>}
      {isAdminheader &&<Adminheader/>}
-     <JobProvider>
+     
       <main className={`${mainPaddingClass} flex-grow`}>
       <Routes>
         <Route path='/' element={<Homepage/>}></Route>
@@ -78,6 +89,7 @@ function Appcontent(){
           <Route path='/admin' element={<Admindashboard/>}></Route>
           <Route path='/admin/users' element={<Adminusers/>}></Route>
           <Route path='/admin/jobs' element={<Adminjobs/>}></Route>
+          
         </Route>
         <Route element={<PrivateRoute allowedroles={['jobseeker']}/>}>
           <Route path='/dashboard' element={<Dashboarduser/>}>
@@ -95,15 +107,19 @@ function Appcontent(){
             <Route path='/employer/Manage-Jobs' element={<Managejobs/>}></Route>
             <Route path='/employer/Manage-Jobs/edit-job/:jobId' element={<Editjob/>}></Route>
             <Route path='/employer/Manage-Jobs/view-applicants/:jobId' element={<ViewApplicants/>}></Route>
+            <Route path='/employer/chats' element={<EmployerChatDashboard/>}></Route>
+            <Route path='/employer/analytics' element={<EmployerAnalyticsPage/>}></Route>
             
         </Route>
       </Routes>
 
       </main>
+      
       </JobProvider>
+      
       </Authprovider> 
       </ApplicantProvider>
-      {!isLoginpage && <Footer/>}
+      {!isLoginpage && <Footer className={footeredit}/>}
        </div>
     </>
   )

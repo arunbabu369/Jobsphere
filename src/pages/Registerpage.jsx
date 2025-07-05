@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { BrowserRouter as Router,Route, Link, Routes } from 'react-router-dom'
 import logo from '../assets/images/company/logo.svg'
 
+
 function Registerpage() {
   const[username,setUsername]=useState('')
   const[email,setEmail]=useState('')
@@ -87,13 +88,13 @@ function Registerpage() {
   
 
   return (
-    <>
+    <div >
     <div className='flex justify-center'>
     <img src={logo} className='h-[100px] w-[250px]' alt="" />
     </div>
     <div className='flex justify-center items-center '>
       
-      <div className='bg-white p-8 rounded-lg sm:shadow-xl w-full max-w-md'>
+      <div className='bg-white p-8 rounded-lg sm:shadow-xl mb-10 w-full max-w-md'>
         <h1 className='text-center text-3xl font-bold'>Register Here</h1>
         <form onSubmit={handleSubmit} className='space-y-4'>
             {error &&<p className='text-red-500 text-center text-sm italic mt-4'>*{error}*</p>}
@@ -107,7 +108,7 @@ function Registerpage() {
             </select><br></br>
             
              {role === 'employer' && (
-                  <div className='form-group'>
+                  <div className='form-group '>
                       <label className='text-xl text-blue-600' htmlFor="companyName">Company Name:</label><br />
                       <input
                         type="text"
@@ -120,7 +121,7 @@ function Registerpage() {
                 )}
 
             {role === 'jobseeker' &&(
-            <div className='form-group mt-4'>
+            <div className='form-group mt-4 space-y-4'>
             <label className='text-xl text-blue-600' htmlFor="username">Username</label><br></br>
             <input type="text" 
             className='w-full border p-2'
@@ -129,7 +130,7 @@ function Registerpage() {
                    onChange={(e)=>setUsername(e.target.value)}
                   
             />
-            <label className='text-xl text-blue-600' htmlFor="Fullname">Full Name</label><br></br>
+            <label className='text-xl mt-4 text-blue-600' htmlFor="Fullname">Full Name</label><br></br>
             <input type="text" 
             className='w-full border p-2'
                    placeholder='Enter Your Full Name'
@@ -171,7 +172,7 @@ function Registerpage() {
         </form>
       </div>
     </div>
-    </>
+    </div>
   )
 }
 

@@ -18,15 +18,15 @@ function Contact() {
 
     }
   return (
-    <div className='mx-auto px-8 py-10 max-w-4xl'>
-        <h1 className='text-center text-indigo-700 text-4xl font-semibold'>Contact Us</h1>
+    <div className='mx-auto mt-4 sm:mt-10 px-8 py-10 max-w-4xl'>
+        <h1 className='text-center text-indigo-700 text-3xl sm:text-4xl font-semibold'>Contact Us</h1>
         <div>
-            <p className="text-md text-gray-700 italic mb-6 text-center">
+            <p className="text-sm sm:text-md text-gray-700 italic mb-6 text-center">
              Have questions or feedback? Feel free to reach out to us!
            </p>
             <form onClick={handleSubmit}>
             <div className='mt-10'>
-            <label htmlFor="name" className="block text-xl   text-gray-700">Name</label>
+            <label htmlFor="name" className="block text-base sm:text-xl   text-gray-700">Name</label>
             <input
               type="text"
               id="name"
@@ -37,7 +37,7 @@ function Contact() {
             />
           </div>
           <div className=''>
-            <label htmlFor="email" className="block text-xl font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block text-base sm:text-xl font-medium text-gray-700">Email</label>
             <input
               type="email"
               id="email"
@@ -48,7 +48,7 @@ function Contact() {
             />
           </div>
           <div className=''>
-            <label htmlFor="message" className="block text-xl text-gray-700">Message</label>
+            <label htmlFor="message" className="block text-base sm:text-xl text-gray-700">Message</label>
             <textarea
               id="message"
               name="message"

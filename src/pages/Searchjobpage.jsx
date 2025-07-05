@@ -84,8 +84,9 @@ function Searchjobpage() {
     
   return (
     <>
+    <div className='py-1 md:py-6'>
     <h1 className='text-center text-3xl sm:text-5xl font-semibold text-indigo-700 my-4 sm:my-6 '>Discover Your Dream Job</h1>
-   
+    </div>
     <div className='relative flex flex-col md:flex-row mx-auto'>
       
 
@@ -95,7 +96,7 @@ function Searchjobpage() {
         <h2 className='font-inter text-sm sm:text-xl text-center'>Filters</h2>
         
         <div className='mb-6'>
-          <label htmlFor="type" className='text-xs sm:text-md font-inter text-gray-700'>Job Type:</label>
+          <label htmlFor="type" className='text-xs sm:text-base font-inter text-gray-700'>Job Type:</label>
           <select name="" id="salary"
            className="w-full p-0 sm:p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
            value={typefilter}
@@ -108,7 +109,7 @@ function Searchjobpage() {
            </select>
         </div>
         <div className="mb-6">
-            <label htmlFor="experience" className="block text-gray-700 text-lg font-medium mb-2">Experience Level</label>
+            <label htmlFor="experience" className="block text-gray-700 text-lg font-medium mb-2">Experience </label>
             <select
               id="experience"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -145,7 +146,7 @@ function Searchjobpage() {
       <div className='relative flex-grow'>
         <input type="text" 
           placeholder='Search by keyword,title,company..'
-          className="w-full text-sm sm:text-base p-1 sm:p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-sm sm:text-base p-1 sm:p-3 pl-10 sm:pl-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={searchterm}
           onChange={(e)=>setSearchterm(e.target.value)}/>
         <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>  
@@ -164,7 +165,7 @@ function Searchjobpage() {
       <div className='relative flex-grow'>
         <input type="text"
         placeholder='Search by location' 
-        className="w-full text-sm  p-1 sm:p-3 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full text-sm sm:text-base p-1 sm:p-3 pl-10 sm:pl-12 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         value={locationfilter}
         onChange={(e)=>setLocationfilter(e.target.value)}
         />
@@ -182,9 +183,8 @@ function Searchjobpage() {
       
        {showMobileFilters && (
         <div className=" bg-white border shadow-lg p-4 md:hidden">
-          {/* your filter form fields here */}
           <div className="mb-4">
-            <label className="block font-medium">Job Type</label>
+            <label className="font-medium">Job Type</label>
             <select name="" id="salary"
            className="w-full p-0 sm:p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
            value={typefilter}
@@ -197,7 +197,7 @@ function Searchjobpage() {
            </select>
           </div>
           <div className="mb-4">
-            <label className="block font-medium">Experience</label>
+            <label className=" font-medium">Experience</label>
             <select
               id="experience"
               className="w-full p-0 sm:p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

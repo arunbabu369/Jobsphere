@@ -18,7 +18,6 @@ const Adminheader=()=>{
                 <NavLink to={'/admin/jobs'} className={({isActive})=>
                 isActive ? 'text-indigo-400 border-b-2 border-indigo-400 pb-1' : 'hover:text-gray-300'}>Jobs</NavLink>
 
-                
               </div>
               <div className='mx-4 sm:mx-8 my-auto'>
                   <Link onClick={logout} className='text-base sm:text-xl text-gray-700 hover:text-blue-700' to='/login'>Logout</Link>

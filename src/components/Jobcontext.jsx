@@ -1,11 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState ,useCallback} from "react";
 
 const Jobcontext=createContext()
 
 const mockJobs=[  {
     id: 'job1',
     title: 'Senior React Developer',
-    company: 'Tech Innovations Inc.',
+    company: 'Tech Innovations Inc.cop',
     location: 'Remote',
     type: 'Full-time',
     salary: '$120,000 - $150,000',
@@ -14,7 +14,7 @@ const mockJobs=[  {
     description: 'We are seeking a highly skilled Senior React Developer to join our dynamic team. You will be responsible for developing and maintaining our cutting-edge web applications.',
     companyRating: '4.5',
     companySize: '500-1000',
-    date:'12-06-2025'
+    date:'12-06-2025',
   },
   {
     id: 'job2',
@@ -176,6 +176,9 @@ const mockJobs=[  {
         console.error(error,"Error updating job from localstorage")
       }
     }
+    const getJobsByEmployerId = useCallback((employerId) => {
+        return jobs.filter(job => String(job.employerId) === String(employerId));
+    }, [jobs]); 
 
     const refreshjobs=()=>{
       setLoadingjob(true)
@@ -185,7 +188,7 @@ const mockJobs=[  {
 
 
     const jobcontextvalue={
-      jobs,loadingjobs,deletejob,updatedJob,refreshjobs
+      jobs,loadingjobs,deletejob,updatedJob,refreshjobs,getJobsByEmployerId
     }
       return(
         <>

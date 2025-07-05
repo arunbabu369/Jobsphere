@@ -61,9 +61,11 @@ function PostnewJob() {
             const newJob={
                 ...jobsdata,
                 id:Date.now().toString(),
-                employerid:currentuser.id,
+                employerId:currentuser.id,
                 date:new Date().toISOString().split('T')[0],
-                applicants:[]
+                applicants:[],
+                views: 0,
+                applicationsCount: 0,
             }
             try{
                 const jobs=JSON.parse(localStorage.getItem('jobs'))||[]
@@ -90,8 +92,8 @@ function PostnewJob() {
     }
     
   return (
-    <div className='bg-white rounded-xl p-8 mx-auto'>
-      <h1 className='text-2xl font-inter text-center'>Post New Job</h1>
+    <div className='bg-white rounded-xl p-8 mx-auto mt-10 sm:mt-6'>
+      <h1 className='text-2xl font-inter font-semi-bold mb-4 text-center'>Post New Job</h1>
       {successmsg && <p className="text-green-600 text-center mb-4">{successmsg}</p>}
       {errors.general && <p className="text-red-600 text-center mb-4">{errors.general}</p>}
 

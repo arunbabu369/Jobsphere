@@ -130,8 +130,8 @@ function Profile() {
   return (
     <>
     {!isEditing ?(
-    <div className='flex my-6'>
-    <div className='mx-auto px-4 py-10 w-3/4'>
+    <div className='md:flex my-6'>
+    <div className='mx-auto px-4 py-10 w-full md:w-3/4'>
         <h1 className="text-3xl font-bold text-center text-indigo-700 mb-8">My Profile</h1>
         <div className='bg-white p-6 rounded-lg shadow-md mx-auto max-w-2xl'>
           <div className="mb-4">
@@ -169,7 +169,7 @@ function Profile() {
               <ul>
                 {education.map(edu => (
                   <li key={edu.id} className="mb-3 p-2 border-b border-gray-200 last:border-b-0">
-                    <p className="font-semibold text-lg">{edu.degree} ({edu.major})</p>
+                    <p className="font-semibold text-lg">{edu.degree} </p>
                     <p className="text-gray-700">{edu.institution}</p>
                     <p className="text-gray-600 text-sm">{edu.startYear} - {edu.endYear}</p>
                   </li>
@@ -187,7 +187,7 @@ function Profile() {
         </button>
       </div>
       </div>
-       <div className='bg-white p-6 rounded-lg w-1/4 shadow-md mx-auto h-full max-w-2xl mt-8'>
+       <div className='bg-white p-6 rounded-lg w-full md:w-1/4 shadow-md mx-auto h-full max-w-2xl mt-28'>
             <h2 className='text-2xl font-bold text-center text-gray-800 mb-6'>Resume</h2>
             <div 
             ref={dropZoneRef}
@@ -220,7 +220,9 @@ function Profile() {
             </div>
             
         </div>
-      </div>):
+      </div>
+      
+    ):
       ( 
       <div className="bg-white p-6 rounded-lg shadow-md mx-auto max-w-2xl">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6 mt-8">Edit Profile</h2>
@@ -236,7 +238,7 @@ function Profile() {
               <div key={q.id} className="border p-3 mb-2 rounded bg-gray-50 flex justify-between items-center">
                 <span>{q.title} ({q.company}, {q.year})</span>
                 <button
-                  onClick={() => handleRemoveExperience(q.id)}
+                  onClick={() => handleRemoveExperince(q.id)}
                   className="text-red-500 hover:text-red-700 text-sm"
                 >
                   Remove

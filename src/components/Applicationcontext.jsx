@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useMemo } from "react";
+import React, { createContext, useState, useEffect, useMemo,useCallback } from "react";
 
 const Applicationcontext=createContext()
 
@@ -32,10 +32,39 @@ export const ApplicantProvider=(({children})=>{
         })
         return newApplication
     }
+
+    const updateApplicationStatus=(applicantId,newStatus)=>{
+        setApplicationdata((prev)=>{
+            const updatedapplication=(prev||[]).map((app)=>{
+                if(String(app.id)===String(applicantId)){
+                    return{...app,newStatus}
+                }
+                return app 
+            })
+            localStorage.setItem('allApplications', JSON.stringify(updatedapplication));
+            return updatedapplication;
+        })
+    }
+
+     const getApplicationsForJob = useCallback((jobId) => {
+        return applicationData.filter(app => String(app.jobId) === String(jobId));
+    }, [applicationData]);
+
+    const getApplicationsByEmployerJobs = useCallback((employerJobIds) => {
+        
+        const jobIdsSet = new Set(employerJobIds.map(String));
+        return applicationData.filter(app => jobIdsSet.has(String(app.jobId)));
+    }, [applicationData]);
+
+
     const applicantContextValue= useMemo(()=>({
         applicationData,
         addApplicationrecord,
-        appLoading
+        appLoading,
+        updateApplicationStatus,
+        getApplicationsForJob ,
+        getApplicationsByEmployerJobs 
+
     }),[applicationData,appLoading])
 
     return(

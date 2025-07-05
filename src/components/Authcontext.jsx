@@ -37,7 +37,7 @@ export const Authprovider=({children})=>{
         const ADMIN_EMAIL='admin@gmail.com'
         const ADMIN_PASS='admin1234'
 
-        const users=JSON.parse(localStorage.getItem('users'))
+        const users=JSON.parse(localStorage.getItem('users'))||[]
         const adminfound=users.find(user=>user.email===ADMIN_EMAIL && user.password===ADMIN_PASS)
         if(!adminfound){
             console.log("Admin user not found. looking default admin user.");
@@ -73,7 +73,8 @@ export const Authprovider=({children})=>{
             companyname: role === 'employer' ? companyname : '',
             fullname,
             experience:[],
-            education:[]
+            education:[],
+            lastReadTimeStamps:{}
         }
         users.push(newuser)
         localStorage.setItem('users',JSON.stringify(users))
@@ -157,13 +158,19 @@ export const Authprovider=({children})=>{
 
 
     },[currentuser,setCurrentuser])
+
     const applyJob=useCallback((jobApplicationform)=>{
          if(!currentuser){
             throw new Error("You must logged into saveJobs");
         }
-        const isApplied=currentuser.appliedjobs.some((appliedjob)=>appliedjob.id===jobApplicationform.id)
+        console.log("--- applyJob Check ---");
+        
+        const isApplied=currentuser.appliedjobs.some((appliedjob)=>{String(appliedjob.id)===String(jobApplicationform.id)
+            
+        })
 
         if(isApplied){
+            
             throw new Error("You have already applied for this job.");
         }
         const newApplicationrecord=addApplicationrecord(
@@ -176,6 +183,7 @@ export const Authprovider=({children})=>{
                 applicantName:jobApplicationform.applicantName || currentuser.username,
                 applicantEmail:jobApplicationform.applicantEmail || currentuser.email,
                 resumeLink: jobApplicationform.resumeLink,
+                
             }
         )
         console.log("Appliction:",newApplicationrecord);
@@ -231,6 +239,31 @@ export const Authprovider=({children})=>{
         return updatedCurrentuser
     },[currentuser,setCurrentuser])
 
+
+    const updateLastReadTimeStamp=(userId, conversationKey, timestamp)=>{
+        const storedUsers=JSON.parse(localStorage.getItem('users')||[])
+        const userIndex=storedUsers.findIndex(user=>String(user.id)===String(userId))
+
+        if(userIndex!==-1){
+            const userToupdate=storedUsers[userIndex]
+            if(!userToupdate.lastReadTimeStamps){
+                userToupdate.lastReadTimeStamps={}
+            }
+            userToupdate.lastReadTimeStamps[conversationKey]=timestamp
+            localStorage.setItem('users',JSON.stringify(storedUsers))
+
+            const currentUserData = localStorage.getItem('currentuser');
+            const storedCurrentUser = currentUserData ? JSON.parse(currentUserData) : null;
+            if (storedCurrentUser && String(storedCurrentUser.id) === String(userId)) {
+                if (!storedCurrentUser.lastReadTimestamps) {
+                    storedCurrentUser.lastReadTimestamps = {};
+                }
+                storedCurrentUser.lastReadTimestamps[conversationKey] = timestamp;
+                localStorage.setItem('currentuser', JSON.stringify(storedCurrentUser));
+        }
+    }
+}
+
     const authValue=useMemo(()=>({
         currentuser,
         loading,
@@ -240,7 +273,8 @@ export const Authprovider=({children})=>{
         savejob,
         applyJob,
         unsave,
-        updatedProfileData
+        updatedProfileData,
+        updateLastReadTimeStamp
 
     }),[currentuser,loading, register,login,logout,savejob,applyJob,unsave])
 
